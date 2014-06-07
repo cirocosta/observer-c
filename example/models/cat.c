@@ -16,6 +16,8 @@ static void _speak(Cat* this)
 
 static void _destroy(Cat* this)
 {
+	this->observable->destroy(this->observable);
+
   if (NULL != this) {
     free(this);
     this = NULL;

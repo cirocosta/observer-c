@@ -6,6 +6,6 @@
 
 	#define OK EXIT_SUCCESS
 	#define KO EXIT_FAILURE
-	#define MAX_OBSERVERS 5
+	#define MAX_OBSERVERS 20
 
 #endif

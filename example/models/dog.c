@@ -8,6 +8,7 @@
 static void _destroy(Dog* this)
 {
 	this->observer->destroy(this->observer);
+
 	if (this != NULL){
 		free(this);
 		this = NULL;
