@@ -37,7 +37,7 @@ static void _notify(Dog* this, int numero, void* observable) {
 
 Dog* DOG_create(char* dogsName)
 {
-	Dog* this = (Dog*) malloc(sizeof(this));
+	Dog* this = (Dog*) malloc(sizeof(*this));
 
 	this->name = dogsName;
 	this->smell = _smell;

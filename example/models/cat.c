@@ -22,7 +22,7 @@ static void _destroy(Cat* this)
   }
 }
 
-static void _getEvent(Cat* this)
+static CatEvent _getEvent(Cat* this)
 {
 	return this->event;
 }
@@ -51,7 +51,7 @@ static int _unregisterObserver(Cat * this, Observer* observer) {
  */
 Cat* CAT_create(char * name)
 {
-	Cat* this = (Cat *) malloc(sizeof(this));
+	Cat* this = (Cat *) malloc(sizeof(*this));
 	this->name = name;
 	this->destroy = _destroy;
 	this->getEvent = _getEvent;

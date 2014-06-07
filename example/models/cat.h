@@ -2,8 +2,8 @@
  * Definition of the CAT class stuff!
  */
 
-#ifndef DOG_H
-  #define DOG_H
+#ifndef CAT_H
+  #define CAT_H
   #include <stdio.h>
   #include <stdlib.h>
   #include "../../observer/observer.h"

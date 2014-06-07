@@ -7,17 +7,14 @@
  	#include <stdio.h>
 	#include <stdlib.h>
 	#include "../../observer/observer.h"
-
-	typedef enum __dog_event
-	{
-		SPEAK
-	} DogEvent;
+	#include "cat.h"
 
 	typedef struct __dog
 	{
 		char* name;
 		void (*speak)(struct __dog*);
 		void (*destroy)(struct __dog*);
+		void (*smell)(struct __dog*, Cat*);
 
 		Observer* observer;
 	} Dog;
