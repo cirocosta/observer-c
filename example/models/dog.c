@@ -1,25 +1,30 @@
 /**
- * Implementation of the DOG stuff!
- *
- * All internal stuff (defined as static) takes the _ prefix.
+ * Whenever a cat MEOWS, dogs listen to it. For each dog present,
+ * register for all of the cats present.
  */
 
 #include "dog.h"
 
-static void _speak(Dog* dog)
+static void _destroy(Dog* this)
 {
-	printf("%s\n", "My name is:");
-	printf("%s\n", dog->name);
-	printf("%s\n", "Wooof!");
-}
-
-static void _destroy(Dog* dog)
-{
-	if (dog != NULL){
-		free(dog);
-		dog = NULL;
+	this->observer->destroy(this->observer);
+	if (this != NULL){
+		free(this);
+		this = NULL;
 	}
 }
+
+static void _smell(Dog * this, Cat* cat)
+{
+	cat->registerObserver(cat, this->observer);
+	printf("%s Just smelled %s\n", this->name, cat->name);
+}
+
+static void _handleCatEvent(Dog* this, Cat* cat)
+{
+	printf("%s\n just heared %s", this->name, cat->name);
+}
+
 
 /**
  * Observer Method called upon the receiption of an incoming event.
@@ -27,26 +32,18 @@ static void _destroy(Dog* dog)
  * @param subject
  */
 static void _notify(Dog* this, int numero, void* observable) {
-/*	switch (type) {
-	case PRINTER:
-		_handle_printer_event(this, (Printer*)observable);
-		break;
-	default:
-		break;
-	}*/
-
-	printf("%s\n", "BATEU NOTIFY DO CAO");
+	_handleCatEvent(this, (Cat*) observable);
 }
-
 
 Dog* DOG_create(char* dogsName)
 {
 	Dog* this = (Dog*) malloc(sizeof(this));
 
 	this->name = dogsName;
-	this->speak = _speak;
+	this->smell = _smell;
 	this->destroy = _destroy;
 	this->observer = observerNew(this, (void (*)(void*, int, void*))_notify);
+
 	return this;
 }
 

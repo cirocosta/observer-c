@@ -9,11 +9,20 @@
   #include "../../observer/observer.h"
   #include "../../observer/observable.h"
 
+  typedef enum __cat_event
+  {
+    SPEAK
+  } CatEvent;
+
   typedef struct __cat
   {
     char* name;
-    void (*speak)(struct __cat*);
     void (*destroy)(struct __cat*);
+
+    CatEvent event;
+    CatEvent (*getEvent)(struct __cat*);
+
+    void (*speak)(struct __cat*);
 
     Observable * observable;
     int (*registerObserver)(struct __cat*, Observer*);

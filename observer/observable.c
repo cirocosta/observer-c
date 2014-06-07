@@ -11,6 +11,7 @@ static void _destroy(Observable* this)
 static int _registerObserver(Observable* this, Observer* observer)
 {
 	int i = 0;
+
 	for (; i < MAX_OBSERVERS; i++) {
 		if (this->observers[i] == NULL) {
 			this->observers[i] = observer;
@@ -26,6 +27,7 @@ static int _registerObserver(Observable* this, Observer* observer)
 static int _unregisterObserver(Observable *this, Observer* observer)
 {
 	int i = 0;
+
 	for (; i < MAX_OBSERVERS; i++) {
 		void* pObserver = this->observers[i];
 
@@ -41,6 +43,7 @@ static int _unregisterObserver(Observable *this, Observer* observer)
 static void _notifyObservers(Observable* this)
 {
 	int i = 0;
+
 	for (; i < MAX_OBSERVERS; i++) {
 		if (this->observers[i] != NULL) {
 			this->observers[i]->notify(this->observers[i], this->type, this->impl);
@@ -50,7 +53,7 @@ static void _notifyObservers(Observable* this)
 
 Observable * observable_new(void* impl, int type)
 {
-	Observable * this = (Observable *) calloc(1, sizeof(*this));
+	Observable * this = (Observable *) malloc(sizeof(this));
 	this->destroy = _destroy;
 	this->impl = impl;
 	this->type = type;

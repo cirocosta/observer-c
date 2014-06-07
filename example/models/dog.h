@@ -8,6 +8,11 @@
 	#include <stdlib.h>
 	#include "../../observer/observer.h"
 
+	typedef enum __dog_event
+	{
+		SPEAK
+	} DogEvent;
+
 	typedef struct __dog
 	{
 		char* name;
