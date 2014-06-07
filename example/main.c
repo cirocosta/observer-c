@@ -16,7 +16,8 @@ int main(int argc, char const *argv[])
 	Cat* hopkins = CAT_create("Hopkins");
 	Dog* alfred = DOG_create("Alfred");
 
-	printf("%s\n", "i'm in da hood!");
+	alfred->smell(alfred, hopkins);
+	hopkins->speak(hopkins);
 
 	hopkins->destroy(hopkins);
 	alfred->destroy(alfred);

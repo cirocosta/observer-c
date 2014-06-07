@@ -54,6 +54,7 @@ static void _notifyObservers(Observable* this)
 Observable * observableNew(void* impl, int type)
 {
 	Observable* this = (Observable *) malloc(sizeof(*this));
+
 	this->destroy = _destroy;
 	this->impl = impl;
 	this->type = type;

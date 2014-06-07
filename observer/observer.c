@@ -16,9 +16,10 @@ static void _notify(Observer *this, int type, void * observable)
 	this->notifyImpl(this->impl, type, observable);
 }
 
-Observer * observerNew(void* impl, void (*notifyImpl)(void*, int, void*))
+Observer* observerNew(void* impl, void (*notifyImpl)(void*, int, void*))
 {
-	Observer * this = (Observer *) malloc(sizeof(*this));
+	Observer* this = (Observer *) malloc(sizeof(*this));
+
 	this->destroy = _destroy;
 	this->notify = _notify;
 	this->impl = impl;
