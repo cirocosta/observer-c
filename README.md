@@ -5,6 +5,17 @@
 ## Using
 
 
+## The Example
+
+In our example we have some animals, each of them defining a method that will be triggered when a cat meow.
+
+As the animals act in a different manner, they'll, then, behave differently :neckbeard:
+
+In technical terms, we have the **CAT** as the **Subject** (that object that the others wants to listen to) and the other **ANIMALS** as **Observers** (they implement a particular method to be triggered when the subject fires it).
+
+
+## Building and Testing
+
 
 ### LICENSE
 

@@ -2,10 +2,10 @@ CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result -D _BSD_SOURCE -O2
 CC = gcc
 
 D_OBS = ./observer
-D_SRC = ./example
+D_EXAMPLE = ./example
 
 
-main: $(D_SRC)/main.c $(D_OBS)/observer.o $(D_OBS)/observable.o
+main: $(D_EXAMPLE)/main.c $(D_OBS)/observer.o $(D_OBS)/observable.o
 	@echo Building $@
 	@$(CC) $(CFLAGS) -o $@.out $^
 	./$@.out
@@ -20,9 +20,9 @@ $(D_OBS)/observer.o: $(D_OBS)/observer.c
 	@$(CC) $(CFLAGS) $^ -c -o $@
 	@echo ----$@ DONE!
 
-function-pointer: $(D_SRC)/function-pointer.c
+function-pointer: $(D_EXAMPLE)/function-pointer.c
 	@echo Building $@.out
-	@$(CC) $(CFLAGS) $^ -o $(D_SRC)/$@.out
+	@$(CC) $(CFLAGS) $^ -o $(D_EXAMPLE)/$@.out
 	@echo ----$@ Done!
 
 clean:
