@@ -1,7 +1,7 @@
 #include "cat.h"
 
 /**
- * Whenever a cat MEOWS, Dogs listen to it
+ * Whenever a cat MEOWS, Dogs listen to it. CAT is the Subject.
  */
 
 static void _speak(Cat* this)
@@ -11,12 +11,12 @@ static void _speak(Cat* this)
   printf("%s\n", "Miaaaau");
 
 	this->event = SPEAK;
-	this->observable->notifyObservers(this->observable);
+	this->subject->notifyObservers(this->subject);
 }
 
 static void _destroy(Cat* this)
 {
-	this->observable->destroy(this->observable);
+	this->subject->destroy(this->subject);
 
   if (NULL != this) {
     free(this);
@@ -36,7 +36,7 @@ static CatEvent _getEvent(Cat* this)
  * @return
  */
 static int _registerObserver(Cat* this, Observer* observer) {
-  return this->observable->registerObserver(this->observable, observer);
+  return this->subject->registerObserver(this->subject, observer);
 }
 
 /**
@@ -46,7 +46,7 @@ static int _registerObserver(Cat* this, Observer* observer) {
  * @return
  */
 static int _unregisterObserver(Cat * this, Observer* observer) {
-  return this->observable->unregisterObserver(this->observable, observer);
+  return this->subject->unregisterObserver(this->subject, observer);
 }
 /**
  * Creates a cat!
@@ -59,7 +59,7 @@ Cat* CAT_create(char * name)
 	this->getEvent = _getEvent;
 	this->speak = _speak;
 
-	this->observable = observableNew(this, 1);
+	this->subject = subjectNew(this, 1);
 	this->registerObserver = _registerObserver;
 	this->unregisterObserver = _unregisterObserver;
 

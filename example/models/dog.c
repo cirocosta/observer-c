@@ -32,8 +32,8 @@ static void _handleCatEvent(Dog* this, Cat* cat)
  * @param type
  * @param subject
  */
-static void _notify(Dog* this, int numero, void* observable) {
-	_handleCatEvent(this, (Cat*) observable);
+static void _notify(Dog* this, int numero, void* subject) {
+	_handleCatEvent(this, (Cat*) subject);
 }
 
 Dog* DOG_create(char* dogsName)

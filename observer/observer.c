@@ -11,9 +11,9 @@ static void _destroy(Observer* this)
 	}
 }
 
-static void _notify(Observer *this, int type, void * observable)
+static void _notify(Observer *this, int type, void * subject)
 {
-	this->notifyImpl(this->impl, type, observable);
+	this->notifyImpl(this->impl, type, subject);
 }
 
 Observer* observerNew(void* impl, void (*notifyImpl)(void*, int, void*))

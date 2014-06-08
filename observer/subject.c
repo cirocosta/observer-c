@@ -1,6 +1,6 @@
-#include "observable.h"
+#include "subject.h"
 
-static void _destroy(Observable* this)
+static void _destroy(Subject* this)
 {
 	if (this != NULL) {
 		free(this);
@@ -8,7 +8,7 @@ static void _destroy(Observable* this)
 	}
 }
 
-static int _registerObserver(Observable* this, Observer* observer)
+static int _registerObserver(Subject* this, Observer* observer)
 {
 	int i = 0;
 
@@ -20,11 +20,11 @@ static int _registerObserver(Observable* this, Observer* observer)
 		}
 	}
 
-	printf("[INF] [OBSERVABLE] we have rush the max number of observers\n");
+	printf("[INF] [SUBJECT] we have rush the max number of observers\n");
 	return KO;
 }
 
-static int _unregisterObserver(Observable *this, Observer* observer)
+static int _unregisterObserver(Subject *this, Observer* observer)
 {
 	int i = 0;
 
@@ -40,7 +40,7 @@ static int _unregisterObserver(Observable *this, Observer* observer)
 	return KO;
 }
 
-static void _notifyObservers(Observable* this)
+static void _notifyObservers(Subject* this)
 {
 	int i = 0;
 
@@ -51,9 +51,9 @@ static void _notifyObservers(Observable* this)
 	}
 }
 
-Observable * observableNew(void* impl, int type)
+Subject * subjectNew(void* impl, int type)
 {
-	Observable* this = (Observable *) malloc(sizeof(*this));
+	Subject* this = (Subject *) malloc(sizeof(*this));
 
 	this->destroy = _destroy;
 	this->impl = impl;

@@ -7,7 +7,7 @@
   #include <stdio.h>
   #include <stdlib.h>
   #include "../../observer/observer.h"
-  #include "../../observer/observable.h"
+  #include "../../observer/subject.h"
 
   typedef enum __cat_event
   {
@@ -24,7 +24,7 @@
 
     void (*speak)(struct __cat*);
 
-    Observable * observable;
+    Subject * subject;
     int (*registerObserver)(struct __cat*, Observer*);
     int (*unregisterObserver)(struct __cat *, Observer*);
   } Cat;

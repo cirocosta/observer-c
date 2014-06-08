@@ -6,13 +6,13 @@ D_EXAMPLE = ./example
 D_MODELS = ./example/models
 
 
-$(D_EXAMPLE)/main.out: $(D_EXAMPLE)/main.c $(D_OBS)/observer.o $(D_OBS)/observable.o $(D_MODELS)/cat.o $(D_MODELS)/dog.o
+$(D_EXAMPLE)/main.out: $(D_EXAMPLE)/main.c $(D_OBS)/observer.o $(D_OBS)/subject.o $(D_MODELS)/cat.o $(D_MODELS)/dog.o
 	@echo Building $@
 	@$(CC) $(CFLAGS) -o $@ $^
 	@echo
 	@echo READY TO ROCK!
 
-$(D_MODELS)/cat.o: $(D_MODELS)/cat.c $(D_OBS)/observer.o $(D_OBS)/observable.o
+$(D_MODELS)/cat.o: $(D_MODELS)/cat.c $(D_OBS)/observer.o $(D_OBS)/subject.o
 	@echo Building $@
 	@$(CC) $(CFLAGS) $^ -c -o $@
 	@echo ----$@ DONE!
@@ -22,7 +22,7 @@ $(D_MODELS)/dog.o: $(D_MODELS)/dog.c $(D_OBS)/observer.o
 	@$(CC) $(CFLAGS) $^ -c -o $@
 	@echo ----$@ DONE!
 
-$(D_OBS)/observable.o: $(D_OBS)/observable.c
+$(D_OBS)/subject.o: $(D_OBS)/subject.c
 	@echo Building $@
 	@$(CC) $(CFLAGS) $^ -c -o $@
 	@echo ----$@ DONE!
