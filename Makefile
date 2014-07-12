@@ -4,38 +4,49 @@ CC = gcc
 D_OBS = ./observer
 D_EXAMPLE = ./example
 D_MODELS = ./example/models
+D_TESTS = ./tests
 
+
+# MAIN SAMPLE
 
 $(D_EXAMPLE)/main.out: $(D_EXAMPLE)/main.c $(D_OBS)/observer.o $(D_OBS)/subject.o $(D_MODELS)/cat.o $(D_MODELS)/dog.o
-	@echo Building $@
 	@$(CC) $(CFLAGS) -o $@ $^
-	@echo
-	@echo READY TO ROCK!
 
 $(D_MODELS)/cat.o: $(D_MODELS)/cat.c $(D_OBS)/observer.o $(D_OBS)/subject.o
-	@echo Building $@
 	@$(CC) $(CFLAGS) $^ -c -o $@
-	@echo ----$@ DONE!
 
 $(D_MODELS)/dog.o: $(D_MODELS)/dog.c $(D_OBS)/observer.o
-	@echo Building $@
 	@$(CC) $(CFLAGS) $^ -c -o $@
-	@echo ----$@ DONE!
+
+
+# LIB
 
 $(D_OBS)/subject.o: $(D_OBS)/subject.c
-	@echo Building $@
 	@$(CC) $(CFLAGS) $^ -c -o $@
-	@echo ----$@ DONE!
 
 $(D_OBS)/observer.o: $(D_OBS)/observer.c
-	@echo Building $@
 	@$(CC) $(CFLAGS) $^ -c -o $@
-	@echo ----$@ DONE!
 
-function-pointer: $(D_EXAMPLE)/function-pointer.c
-	@echo Building $@.out
-	@$(CC) $(CFLAGS) $^ -o $(D_EXAMPLE)/$@.out
-	@echo ----$@ Done!
+
+# SAMPLE - FUNCTION POINTER
+
+$(D_EXAMPLE)/function-pointer.out: $(D_EXAMPLE)/function-pointer.c
+	@$(CC) $(CFLAGS) $^ -o $@
+
+
+# CALLS
+
+.PHONY: clean test
+
+test: $(D_TESTS)/test-observable.out
+	@./$^
+
+example: $(D_EXAMPLE)/main.out
+	@./$^
+
+$(D_TESTS)/test-observable.out: $(D_TESTS)/test-observable.c
+	@$(CC) $(CFLAGS) -o $@ $^
+	./$@
 
 clean:
 	find . -name "*.out" -delete
