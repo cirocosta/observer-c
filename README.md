@@ -5,6 +5,17 @@
 ## Using
 
 
+1.	Create something to be observed and other thing to be observing the first one;
+
+2.	The observable (subject) includes `observer.h` and `subject.h`. The observer only includes `'observer.h`.
+
+3.	The subject needs to implement at least the subject's interface and two methods: `registerObserver` and `unregisterObserver`.
+
+4. The observers then implement the observer interface and the `notify` method, which is called when an event it is watching is triggered.
+
+
+Check out the example for a better explanation on this.
+
 ## The Example
 
 In our example we have some animals, each of them defining a method that will be triggered when a cat meow.

@@ -1,8 +1,5 @@
 #include "observer.h"
 
-/**
- * Destructor for our Observer
- */
 static void _destroy(Observer* this)
 {
 	if (this != NULL) {
