@@ -3,16 +3,18 @@
 #ifndef SUBJECT_H
 #define SUBJECT_H
 
-/*#include "observer.h"
-*/
+#define MAX_OBSERVERS 20
+
+#include "observer.h"
 
 typedef struct subject
 {
+  Observer *observers[MAX_OBSERVERS];
+
   /*
 		int type;
 		void (*destroy)(struct __subject *);
 		void * impl;
-		Observer * observers[MAX_OBSERVERS];
 		int (*registerObserver)(struct __subject*, Observer*);
 		int (*unregisterObserver)(struct __subject *, Observer*);
 		void (*notifyObservers)(struct __subject*);
@@ -21,5 +23,7 @@ typedef struct subject
 
 Subject *subject_make(/*void*, int*/);
 void subject_destroy(Subject *theSubject);
+
+void subject_attach(const Subject * const theSubject, const Observer * const theObserver);
 
 #endif
