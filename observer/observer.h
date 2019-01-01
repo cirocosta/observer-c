@@ -4,16 +4,13 @@
 #define OBSERVER_H
 
 typedef struct observer {
-  /*
-		void* impl;
-		void (*notify)(struct __observer*, int, void *);
-		void (*notifyImpl)(void*, int, void*);
-    */
+  void *parent;
+  void (*notify)(void *parent, void *data);
 } Observer;
 
-Observer *observer_make(/*void*, void (*)(void*, int, void*)*/);
+Observer *observer_make(void *parent, void (*notify)(void *, void *));
 void observer_destroy(Observer *theObserver);
 
-void observer_update();
+void observer_update(Observer *theObserver, void *data);
 
 #endif

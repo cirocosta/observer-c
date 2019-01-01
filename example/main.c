@@ -11,10 +11,9 @@ int main()
 	Cat *hopkins = cat_make("Hopkins");
   Dog *alfred = dog_make("Alfred");
 
-  /*	alfred->smell(alfred, hopkins); */
+  subject_attach(hopkins->theSubject, alfred->theObserver);
 
 	cat_speak(hopkins);
-  dog_speak(alfred);
 
 	cat_destroy(hopkins);
   dog_destroy(alfred);

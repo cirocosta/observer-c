@@ -3,16 +3,12 @@
 #include <stdlib.h>
 #include "observer.h"
 
-Observer *observer_make(/*void* impl, void (*notifyImpl)(void*, int, void*)*/)
+Observer *observer_make(void *parent, void (*notify)(void *, void *))
 {
   Observer *this = (Observer *)malloc(sizeof(Observer));
 
-  /*
-	this->destroy = _destroy;
-	this->notify = _notify;
-	this->impl = impl;
-	this->notifyImpl = (void (*)(void*, int, void*)) notifyImpl;
-  */
+  this->parent = parent;
+	this->notify = notify;
 
   return this;
 }
@@ -20,19 +16,14 @@ Observer *observer_make(/*void* impl, void (*notifyImpl)(void*, int, void*)*/)
 void observer_destroy(Observer *theObserver)
 {
   if (theObserver != NULL) {
+    theObserver->parent = NULL;
+    theObserver->notify = NULL;
     free(theObserver);
     theObserver = NULL;
   }
 }
 
-void observer_update()
+void observer_update(Observer *theObserver, void *data)
 {
+  theObserver->notify(theObserver->parent, data);
 }
-
-/*
-static void _notify(Observer *this, int type, void * subject)
-{
-	this->notifyImpl(this->impl, type, subject);
-}
-*/
-

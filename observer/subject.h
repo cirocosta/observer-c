@@ -10,20 +10,12 @@
 typedef struct subject
 {
   Observer *observers[MAX_OBSERVERS];
-
-  /*
-		int type;
-		void (*destroy)(struct __subject *);
-		void * impl;
-		int (*registerObserver)(struct __subject*, Observer*);
-		int (*unregisterObserver)(struct __subject *, Observer*);
-		void (*notifyObservers)(struct __subject*);
-    */
 } Subject;
 
-Subject *subject_make(/*void*, int*/);
+Subject *subject_make();
 void subject_destroy(Subject *theSubject);
 
-void subject_attach(const Subject * const theSubject, const Observer * const theObserver);
+void subject_attach(Subject * const theSubject, Observer * const theObserver);
+void subject_notify(const Subject * const theSubject, void *data);
 
 #endif
