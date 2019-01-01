@@ -1,26 +1,23 @@
-/**
- * Main program that uses the Observer implementation.
- */
+/* main.c */
+
+/* Example of the Observer implementation */
 
 #include <stdio.h>
-#include "models/cat.h"
-#include "models/dog.h"
+#include "cat.h"
+#include "dog.h"
 
-/**
- * Defining the basic DOG class/interface-a-like
- */
-
-int main(int argc, char const *argv[])
+int main()
 {
+	Cat *hopkins = cat_make("Hopkins");
+  Dog *alfred = dog_make("Alfred");
 
-	Cat* hopkins = CAT_create("Hopkins");
-	Dog* alfred = DOG_create("Alfred");
+  /*	alfred->smell(alfred, hopkins); */
 
-	alfred->smell(alfred, hopkins);
-	hopkins->speak(hopkins);
+	cat_speak(hopkins);
+  dog_speak(alfred);
 
-	hopkins->destroy(hopkins);
-	alfred->destroy(alfred);
+	cat_destroy(hopkins);
+  dog_destroy(alfred);
 
-	return 0;
+  return 0;
 }
