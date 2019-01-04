@@ -5,10 +5,10 @@
 
 typedef struct observer {
   void *parent;
-  void (*notify)(void *parent, void *data);
+  void (*update)(void *parent, void *data);
 } Observer;
 
-Observer *observer_make(void *parent, void (*notify)(void *, void *));
+Observer *observer_make(void *parent, void (*update)(void *, void *));
 void observer_destroy(Observer *theObserver);
 
 void observer_update(Observer *theObserver, void *data);

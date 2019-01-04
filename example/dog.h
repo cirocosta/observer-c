@@ -15,6 +15,6 @@ Dog *dog_make(const char * const name);
 void dog_destroy(Dog *theDog);
 
 void dog_speak(Dog *theDog);
-void dog_notify(void *aDog, void *data);
+void dog_update(void *aDog, void *data);
 
 #endif

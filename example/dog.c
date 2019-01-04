@@ -13,7 +13,7 @@ Dog *dog_make(const char * const name)
 
   strAllocAndCopy(&(this->name), name);
 
-  this->theObserver = observer_make((void *)this, dog_notify);
+  this->theObserver = observer_make((void *)this, dog_update);
 
 	return this;
 }
@@ -33,7 +33,7 @@ void dog_speak(Dog *theDog)
   printf("%s the dog says Bauuuu\n", theDog->name);
 }
 
-void dog_notify(void *aDog, void *data)
+void dog_update(void *aDog, void *data)
 {
   Dog *theDog = (Dog *)aDog;
   Cat *theCat = (Cat *)data;
