@@ -1,26 +1,29 @@
+/* observer.c */
+
+#include <stdlib.h>
 #include "observer.h"
 
-static void _destroy(Observer* this)
+Observer *observer_make(void *parent, void (*update)(void *, void *))
 {
-	if (this != NULL) {
-		free(this);
-		this = NULL;
-	}
+  Observer *this = (Observer *)malloc(sizeof(Observer));
+
+  this->parent = parent;
+	this->update = update;
+
+  return this;
 }
 
-static void _notify(Observer *this, int type, void * subject)
+void observer_destroy(Observer *theObserver)
 {
-	this->notifyImpl(this->impl, type, subject);
+  if (theObserver != NULL) {
+    theObserver->parent = NULL;
+    theObserver->update = NULL;
+    free(theObserver);
+    theObserver = NULL;
+  }
 }
 
-Observer* observerNew(void* impl, void (*notifyImpl)(void*, int, void*))
+void observer_update(Observer *theObserver, void *data)
 {
-	Observer* this = (Observer *) malloc(sizeof(*this));
-
-	this->destroy = _destroy;
-	this->notify = _notify;
-	this->impl = impl;
-	this->notifyImpl = (void (*)(void*, int, void*)) notifyImpl;
-
-	return this;
+  theObserver->update(theObserver->parent, data);
 }

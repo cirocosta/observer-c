@@ -2,6 +2,8 @@
 
 > A pure C implementation of the Observer Pattern
 
+# TO BE REWRITTEN
+
 ## Using
 
 
